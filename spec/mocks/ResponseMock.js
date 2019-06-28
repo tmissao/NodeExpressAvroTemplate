@@ -6,7 +6,8 @@ class ResponseMock {
   getMock() {
     return {
       send: this._sendCallback ? jasmine.createSpy().and.callFake(this._sendCallback)
-        : jasmine.createSpy()
+        : jasmine.createSpy(),
+      contentType: jasmine.createSpy()
     };
   }
 }

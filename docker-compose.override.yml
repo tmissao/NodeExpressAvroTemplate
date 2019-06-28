@@ -1,6 +1,6 @@
 version: '3.4'
 services:
-  express:
+  express_avro:
     build:
       context: .
     ports:

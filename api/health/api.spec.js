@@ -2,6 +2,7 @@ const request = require('request');
 const app = require('../../app');
 const config = require('../../config/config');
 const router = require('./router');
+const models = require('./model');
 
 const BASE_URL = config.app.getPath(router.path);
 
@@ -23,13 +24,13 @@ describe('Health API', () => {
       const options = {
         method: 'GET',
         uri: BASE_URL,
-        json: true
+        encoding: null
       };
 
       request.get(options, (err, res, body) => {
         if (err) { throw new Error('Request Error'); }
         data.status = res.statusCode;
-        data.body = body;
+        data.body = models.healthType.fromBuffer(body);
         done();
       });
     });
@@ -39,8 +40,9 @@ describe('Health API', () => {
     });
 
     it('Body', () => {
-      const { status } = data.body;
-      expect(status).toBe('OK');
+      const { status, message } = data.body;
+      expect(status).toBe(200);
+      expect(message).toBe('AVRO Working !!!');
     });
   });
 });

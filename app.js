@@ -5,12 +5,10 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const health = require('./api/health/router');
 const authorize = require('./lib/authorize');
-const auth = require('./api/auth/router');
 const output = require('./lib/output');
 
 const app = express();
 
-// app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
@@ -19,7 +17,6 @@ app.use(cors());
 app.use((req, res, next) => { res.type('json'); next(); });
 
 app.use(health.path, health.router);
-app.use(auth.path, auth.router);
 
 // Authentication required URLs below
 app.use(authorize);

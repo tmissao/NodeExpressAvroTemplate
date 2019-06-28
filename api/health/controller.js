@@ -1,5 +1,13 @@
+const model = require('./model');
+
 const _health = (req, res) => {
-  return res.send(JSON.stringify({ status: 'OK' }));
+  const type = model.healthType;
+  const response = { status: 200, message: 'AVRO Working !!!' };
+  const buffer = type.toBuffer(response);
+
+  res.contentType('application/octet-stream');
+
+  return res.send(buffer);
 };
 
 const getController = () => ({
