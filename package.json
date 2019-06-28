@@ -33,7 +33,6 @@
     "eslint-plugin-lodash": "^2.5.0",
     "jasmine": "^2.9.0",
     "jasmine-console-reporter": "^3.0.2",
-    "jasmine-node": "^1.14.5",
     "jasmine-spec-reporter": "^4.2.1"
   }
 }
